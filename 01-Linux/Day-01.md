@@ -1240,3 +1240,740 @@ mv
 * `cp` creates copies, making it ideal for backups.
 * `mv` moves or renames files and directories.
 * Understanding these commands is fundamental for Linux administration and DevOps operations.
+# Linux File Reading Commands
+
+Linux provides several commands to read and inspect file contents. Each command is designed for a different purpose, such as displaying an entire file, viewing large files page by page, or monitoring log files in real time.
+
+These commands are widely used by Linux administrators and DevOps engineers while working with configuration files, application logs, and system logs.
+
+---
+
+# `cat` (Concatenate)
+
+The `cat` command stands for **Concatenate**. It was originally designed to combine the contents of multiple files and display them as a single output. Today, it is commonly used to display the contents of a file.
+
+## Syntax
+
+```bash
+cat <filename>
+```
+
+## Example
+
+```bash
+cat devops.txt
+```
+
+Output:
+
+```text
+Linux
+Git
+Docker
+Kubernetes
+Jenkins
+Terraform
+Azure
+```
+
+## Use Cases
+
+* Display the contents of a small file.
+* Combine multiple files into one output.
+* Quickly verify configuration files.
+
+> **Note:** `cat` is not suitable for very large files because it displays the entire file at once, making it difficult to locate specific information.
+
+---
+
+# `less`
+
+The `less` command displays a file **one screen at a time**, allowing users to scroll forward and backward without loading the entire file into the terminal.
+
+## Syntax
+
+```bash
+less <filename>
+```
+
+## Example
+
+```bash
+less devops.txt
+```
+
+### Navigation
+
+* **Down Arrow** → Scroll down
+* **Up Arrow** → Scroll up
+* **Space** → Next page
+* **b** → Previous page
+* **q** → Quit
+
+## Use Cases
+
+* Read large log files.
+* Inspect configuration files.
+* Navigate through files efficiently without flooding the terminal.
+
+---
+
+# `head`
+
+The `head` command displays the **first 10 lines** of a file by default.
+
+## Syntax
+
+```bash
+head <filename>
+```
+
+## Example
+
+```bash
+head devops.txt
+```
+
+Display the first 5 lines:
+
+```bash
+head -5 devops.txt
+```
+
+## Use Cases
+
+* Verify the beginning of configuration files.
+* Check file headers.
+* Preview file contents.
+
+---
+
+# `tail`
+
+The `tail` command displays the **last 10 lines** of a file by default.
+
+## Syntax
+
+```bash
+tail <filename>
+```
+
+## Example
+
+```bash
+tail devops.txt
+```
+
+Display the last 3 lines:
+
+```bash
+tail -3 devops.txt
+```
+
+Display the last 20 lines:
+
+```bash
+tail -20 devops.txt
+```
+
+or
+
+```bash
+tail -n 20 devops.txt
+```
+
+## Use Cases
+
+* Read the latest log entries.
+* Check recent updates to a file.
+* Troubleshoot applications.
+
+---
+
+# `tail -f` (Follow)
+
+The `-f` option stands for **Follow**.
+
+The `tail -f` command continuously monitors a file and displays new content as it is added.
+
+## Syntax
+
+```bash
+tail -f <filename>
+```
+
+## Example
+
+```bash
+tail -f application.log
+```
+
+Whenever new log entries are written to the file, they appear automatically in the terminal.
+
+To stop monitoring:
+
+```text
+Press Ctrl + C
+```
+
+## Use Cases
+
+* Monitor application logs in real time.
+* Observe server logs.
+* Troubleshoot production issues.
+* Watch container logs while applications are running.
+
+---
+
+# Comparison of File Reading Commands
+
+| Command   | Purpose                                                             |
+| --------- | ------------------------------------------------------------------- |
+| `cat`     | Displays the entire file.                                           |
+| `less`    | Displays a file one screen at a time for easy navigation.           |
+| `head`    | Displays the first 10 lines of a file.                              |
+| `tail`    | Displays the last 10 lines of a file.                               |
+| `tail -f` | Continuously monitors a file and displays new content in real time. |
+
+---
+
+# Real DevOps Scenarios
+
+## Viewing a Configuration File
+
+```bash
+cat /etc/nginx/nginx.conf
+```
+
+Used to quickly inspect a small configuration file.
+
+---
+
+## Reading a Large Log File
+
+```bash
+less /var/log/syslog
+```
+
+Allows easy navigation through a large log file.
+
+---
+
+## Checking the Beginning of a Configuration File
+
+```bash
+head /etc/nginx/nginx.conf
+```
+
+Useful for verifying headers or initial configuration settings.
+
+---
+
+## Viewing the Latest Application Logs
+
+```bash
+tail /var/log/app.log
+```
+
+Displays the most recent log entries.
+
+---
+
+## Monitoring Logs in Real Time
+
+```bash
+tail -f /var/log/app.log
+```
+
+Commonly used by DevOps engineers to monitor application logs during deployments, troubleshooting, or production incidents.
+
+---
+
+# Interview Questions
+
+### 1. Why is `cat` not recommended for large files?
+
+`cat` displays the entire file at once, which floods the terminal and makes it difficult to locate specific information. Commands like `less`, `head`, and `tail` are more suitable for large files.
+
+---
+
+### 2. When would you use `less` instead of `cat`?
+
+`less` is used when working with large files because it displays one screen at a time and allows users to navigate forward and backward efficiently.
+
+---
+
+### 3. What is the difference between `head` and `tail`?
+
+* `head` displays the first 10 lines of a file by default.
+* `tail` displays the last 10 lines of a file by default.
+
+---
+
+### 4. What does `tail -f` do?
+
+`tail -f` continuously monitors a file and displays new content as it is appended. It is widely used for monitoring application and server logs in real time.
+
+---
+
+### 5. Which command would you use to troubleshoot a running application?
+
+I would use:
+
+```bash
+tail -f /var/log/app.log
+```
+
+because it allows me to monitor the latest log entries in real time without repeatedly reopening the log file.
+
+---
+
+# Commands Practiced Today
+
+```text
+cat
+less
+head
+head -5
+tail
+tail -3
+tail -20
+tail -n 20
+tail -f
+```
+
+---
+
+# Hands-on Activities Completed
+
+* Created a sample file.
+* Displayed file contents using `cat`.
+* Read a file page by page using `less`.
+* Viewed the beginning of a file using `head`.
+* Viewed the end of a file using `tail`.
+* Displayed a custom number of lines using `head` and `tail`.
+* Monitored a file in real time using `tail -f`.
+* Stopped a running command using `Ctrl + C`.
+
+---
+
+# Key Takeaways
+
+* `cat` is suitable for viewing small files.
+* `less` is ideal for reading large files efficiently.
+* `head` displays the beginning of a file.
+* `tail` displays the end of a file.
+* `tail -f` is one of the most important commands for DevOps engineers because it enables real-time log monitoring.
+* Understanding log-reading commands is essential for troubleshooting applications and maintaining production systems.
+# Linux File Permissions and Ownership
+
+## Overview
+
+Linux provides a security mechanism called **file permissions** to control who can access and modify files and directories. Every file and directory also has an **owner** and a **group**, which work together with permissions to secure the system.
+
+Understanding permissions and ownership is essential for Linux administrators and DevOps engineers because they frequently troubleshoot permission-related issues in production environments.
+
+---
+
+# Why Do We Need File Permissions?
+
+Without file permissions, any user could:
+
+* View confidential data.
+* Modify important configuration files.
+* Delete application files.
+* Execute unauthorized programs.
+
+File permissions help protect files from unauthorized access and accidental or malicious modifications.
+
+---
+
+# Basic File Permissions
+
+Linux provides three basic permissions.
+
+| Permission | Symbol | Meaning                              |
+| ---------- | ------ | ------------------------------------ |
+| Read       | `r`    | View the contents of a file.         |
+| Write      | `w`    | Modify the contents of a file.       |
+| Execute    | `x`    | Run the file as a program or script. |
+
+---
+
+# Permission Categories
+
+Permissions are assigned to three categories of users.
+
+| Category     | Description                                                       |
+| ------------ | ----------------------------------------------------------------- |
+| Owner (`u`)  | The user who owns the file (usually the creator).                 |
+| Group (`g`)  | A collection of users who share common permissions.               |
+| Others (`o`) | Everyone else who is neither the owner nor a member of the group. |
+
+---
+
+# Viewing Permissions
+
+Use the following command to view permissions:
+
+```bash
+ls -l
+```
+
+Example:
+
+```text
+-rwxr-xr--
+```
+
+Breakdown:
+
+```text
+-
+rwx
+r-x
+r--
+```
+
+* First character (`-`) → Regular file
+* `d` → Directory
+
+Permission groups:
+
+* Owner → `rwx`
+* Group → `r-x`
+* Others → `r--`
+
+---
+
+# Numeric Permission Values
+
+Each permission has a numeric value.
+
+| Permission    | Value |
+| ------------- | ----: |
+| Read (`r`)    |     4 |
+| Write (`w`)   |     2 |
+| Execute (`x`) |     1 |
+
+Permissions are calculated by adding these values.
+
+| Permission | Calculation | Value |
+| ---------- | ----------- | ----: |
+| `rwx`      | 4 + 2 + 1   |     7 |
+| `rw-`      | 4 + 2       |     6 |
+| `r-x`      | 4 + 1       |     5 |
+| `r--`      | 4           |     4 |
+| `-wx`      | 2 + 1       |     3 |
+| `-w-`      | 2           |     2 |
+| `--x`      | 1           |     1 |
+| `---`      | 0           |     0 |
+
+---
+
+# Common Permission Values
+
+## `755`
+
+```text
+Owner  -> rwx
+Group  -> r-x
+Others -> r-x
+```
+
+Used for executable scripts and directories where only the owner should modify the content.
+
+---
+
+## `644`
+
+```text
+Owner  -> rw-
+Group  -> r--
+Others -> r--
+```
+
+Commonly used for configuration files because only the owner can modify them while everyone else can read them.
+
+---
+
+## `777`
+
+```text
+Owner  -> rwx
+Group  -> rwx
+Others -> rwx
+```
+
+Grants full access to everyone.
+
+**Not recommended** because any user can read, modify, or execute the file, creating security risks.
+
+---
+
+# chmod (Change Mode)
+
+`chmod` is used to change file or directory permissions.
+
+## Numeric Method
+
+```bash
+chmod 755 deploy.sh
+```
+
+```bash
+chmod 644 config.conf
+```
+
+---
+
+## Symbolic Method
+
+Add execute permission:
+
+```bash
+chmod +x deploy.sh
+```
+
+Add execute permission to owner:
+
+```bash
+chmod u+x deploy.sh
+```
+
+Add write permission to group:
+
+```bash
+chmod g+w deploy.sh
+```
+
+Remove execute permission from others:
+
+```bash
+chmod o-x deploy.sh
+```
+
+Remove write permission:
+
+```bash
+chmod -w file.txt
+```
+
+---
+
+# Difference Between Numeric and Symbolic Methods
+
+| Numeric Method                   | Symbolic Method                       |
+| -------------------------------- | ------------------------------------- |
+| Sets all permissions explicitly. | Adds or removes specific permissions. |
+| Example: `chmod 755 file.sh`     | Example: `chmod +x file.sh`           |
+
+---
+
+# File Ownership
+
+Every file has:
+
+* An Owner
+* A Group
+
+Ownership is different from permissions.
+
+Permissions define **what actions** can be performed.
+
+Ownership defines **who owns the file**.
+
+---
+
+# Viewing Ownership
+
+```bash
+ls -l
+```
+
+Example:
+
+```text
+-rwxr-xr-x 1 sahigudipudi sahigudipudi 250 Jun 30 10:00 deploy.sh
+```
+
+Here:
+
+* First `sahigudipudi` → Owner
+* Second `sahigudipudi` → Group
+
+---
+
+# chown (Change Owner)
+
+Used to change the owner of a file or directory.
+
+Syntax:
+
+```bash
+sudo chown <owner> <file>
+```
+
+Example:
+
+```bash
+sudo chown sahigudipudi deploy.sh
+```
+
+Change both owner and group:
+
+```bash
+sudo chown sahigudipudi:developers deploy.sh
+```
+
+---
+
+# chgrp (Change Group)
+
+Used to change only the group ownership.
+
+Syntax:
+
+```bash
+sudo chgrp developers deploy.sh
+```
+
+---
+
+# chmod vs chown vs chgrp
+
+| Command | Purpose                                             |
+| ------- | --------------------------------------------------- |
+| `chmod` | Changes file permissions.                           |
+| `chown` | Changes the owner of a file or directory.           |
+| `chgrp` | Changes the group ownership of a file or directory. |
+
+---
+
+# Real DevOps Scenarios
+
+## Deploying Shell Scripts
+
+Deployment scripts are commonly assigned permission `755` so that:
+
+* Owner can read, modify, and execute.
+* Group and others can read and execute.
+
+---
+
+## Configuration Files
+
+Configuration files are commonly assigned permission `644` because:
+
+* Only the owner should modify them.
+* Other users only need read access.
+
+---
+
+## Jenkins Pipeline Failure
+
+A Jenkins pipeline may fail with:
+
+```text
+Permission denied
+```
+
+Possible causes:
+
+* Missing execute permission.
+* Incorrect file ownership.
+
+Solutions:
+
+```bash
+chmod +x deploy.sh
+```
+
+or
+
+```bash
+sudo chown ubuntu deploy.sh
+```
+
+depending on the root cause.
+
+---
+
+# Interview Questions
+
+### 1. Why do we need file permissions?
+
+To protect files and directories from unauthorized access and control who can read, modify, or execute them.
+
+---
+
+### 2. What are the three basic Linux permissions?
+
+* Read (`r`)
+* Write (`w`)
+* Execute (`x`)
+
+---
+
+### 3. What is the difference between permissions and ownership?
+
+Permissions define what actions are allowed on a file.
+
+Ownership defines which user owns the file and which group it belongs to.
+
+---
+
+### 4. Why is `777` considered dangerous?
+
+Because it grants read, write, and execute permissions to everyone, creating significant security risks.
+
+---
+
+### 5. What is the difference between `chmod` and `chown`?
+
+`chmod` changes permissions.
+
+`chown` changes ownership.
+
+---
+
+### 6. What does `chgrp` do?
+
+It changes the group ownership of a file or directory.
+
+---
+
+### 7. Why are groups useful in Linux?
+
+Groups simplify administration by allowing permissions to be assigned to multiple users at once instead of configuring each user individually.
+
+---
+
+# Commands Practiced
+
+```text
+ls -l
+chmod 755
+chmod 644
+chmod +x
+chmod u+x
+chmod g+w
+chmod o-x
+chmod -w
+chown
+chgrp
+```
+
+---
+
+# Key Takeaways
+
+* Linux uses file permissions to secure files and directories.
+* Every file has an owner and a group.
+* Permissions are divided into Owner, Group, and Others.
+* Read = 4, Write = 2, Execute = 1.
+* Common permission values include `755` and `644`.
+* `chmod` changes permissions.
+* `chown` changes the owner.
+* `chgrp` changes the group.
+* Understanding permissions and ownership is essential for troubleshooting Linux and DevOps environments.
