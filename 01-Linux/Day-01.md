@@ -773,3 +773,470 @@ The `pwd` command displays the current working directory.
 * `.` represents the current directory.
 * `..` represents the parent directory.
 * `~` represents the current user's home directory.
+# Linux File and Directory Management Commands
+
+Linux provides a rich set of commands to create, navigate, copy, move, and remove files and directories. These commands are frequently used by Linux administrators and DevOps engineers while managing applications, configuration files, and server resources.
+
+---
+
+# `pwd` (Print Working Directory)
+
+The `pwd` command displays the current working directory, helping users identify their current location in the Linux file system.
+
+### Syntax
+
+```bash
+pwd
+```
+
+### Example
+
+```bash
+pwd
+```
+
+Output:
+
+```text
+/home/sahigudipudi/DevOps-2026/01-Linux
+```
+
+### Use Case
+
+* Identify the current directory before performing file operations.
+* Avoid accidental changes or deletion in the wrong directory.
+
+---
+
+# `cd` (Change Directory)
+
+The `cd` command is used to navigate between directories.
+
+### Syntax
+
+```bash
+cd <directory_name>
+```
+
+### Examples
+
+Move to the root directory:
+
+```bash
+cd /
+```
+
+Move to the home directory:
+
+```bash
+cd ~
+```
+
+Move to the parent directory:
+
+```bash
+cd ..
+```
+
+Move to a directory using an absolute path:
+
+```bash
+cd /etc
+```
+
+Move to a directory using a relative path:
+
+```bash
+cd 01-Linux
+```
+
+### Use Case
+
+* Navigate through the Linux file system.
+* Access configuration files, project folders, or application directories.
+
+---
+
+# `ls` (List)
+
+The `ls` command displays the contents of a directory.
+
+### Syntax
+
+```bash
+ls
+```
+
+### Common Options
+
+#### `ls`
+
+Displays only visible files and directories.
+
+#### `ls -a`
+
+Displays all files, including hidden files whose names begin with a dot (`.`).
+
+Example:
+
+```text
+.git
+.bashrc
+.profile
+```
+
+#### `ls -l`
+
+Displays files and directories in **long listing format**, providing additional details such as:
+
+* File type
+* Permissions
+* Owner
+* Group
+* File size
+* Last modified date and time
+
+The first character of the output indicates the file type:
+
+* `d` → Directory
+* `-` → Regular file
+* `l` → Symbolic link
+
+#### `ls -la`
+
+Combines both `-l` and `-a` to display detailed information for all files, including hidden files.
+
+### Use Case
+
+* View directory contents.
+* Verify permissions.
+* Identify hidden configuration files.
+
+---
+
+# `mkdir` (Make Directory)
+
+The `mkdir` command creates new directories.
+
+### Syntax
+
+```bash
+mkdir directory_name
+```
+
+### Example
+
+```bash
+mkdir Practice
+```
+
+### Create Multiple Directories
+
+```bash
+mkdir Dev Test Prod
+```
+
+### Create Nested Directories
+
+```bash
+mkdir -p DevOps/Linux/Basics
+```
+
+The `-p` option automatically creates parent directories if they do not exist.
+
+### Use Case
+
+* Organize projects.
+* Create application directory structures.
+* Prepare folder hierarchies for deployments.
+
+---
+
+# `touch`
+
+The `touch` command creates an empty file if it does not already exist. If the file exists, it updates the file's timestamp.
+
+### Syntax
+
+```bash
+touch filename
+```
+
+### Example
+
+```bash
+touch notes.txt
+```
+
+### Create Multiple Files
+
+```bash
+touch file1.txt file2.txt README.md
+```
+
+### Use Case
+
+* Create configuration files.
+* Create log files.
+* Quickly generate empty files for testing.
+
+---
+
+# `rmdir` (Remove Directory)
+
+The `rmdir` command removes **only empty directories**.
+
+### Syntax
+
+```bash
+rmdir directory_name
+```
+
+### Example
+
+```bash
+rmdir Practice
+```
+
+If the directory contains files or subdirectories, Linux returns an error because `rmdir` is designed to remove only empty directories.
+
+### Use Case
+
+* Safely remove empty directories.
+
+---
+
+# `rm` (Remove)
+
+The `rm` command removes files and directories.
+
+### Remove a File
+
+```bash
+rm notes.txt
+```
+
+### Remove a Directory and Its Contents
+
+```bash
+rm -r DevOps
+```
+
+The `-r` (recursive) option removes the directory along with all files and subdirectories inside it.
+
+> **Warning:** Use `rm -r` carefully, as deleted files cannot be recovered easily.
+
+### Use Case
+
+* Delete unnecessary files.
+* Clean up project directories.
+* Remove old deployment folders.
+
+---
+
+# `cp` (Copy)
+
+The `cp` command copies files or directories from one location to another.
+
+### Syntax
+
+```bash
+cp source destination
+```
+
+### Copy a File
+
+```bash
+cp notes.txt backup.txt
+```
+
+This creates a copy while keeping the original file unchanged.
+
+### Copy a File to Another Directory
+
+```bash
+cp notes.txt Practice/
+```
+
+### Copy a Directory
+
+```bash
+cp -r Project ProjectBackup
+```
+
+The `-r` (recursive) option copies the directory and all its contents.
+
+### Use Case
+
+* Create backup copies.
+* Duplicate project files.
+* Copy configuration files before modification.
+
+---
+
+# `mv` (Move)
+
+The `mv` command moves files or directories from one location to another. It is also used to rename files and directories.
+
+### Syntax
+
+```bash
+mv source destination
+```
+
+### Move a File
+
+```bash
+mv notes.txt Practice/
+```
+
+The original file is moved to the destination directory.
+
+### Rename a File
+
+```bash
+mv notes.txt linux-notes.txt
+```
+
+This changes the file name without creating a copy.
+
+> **Note:** If the destination file already exists, `mv` overwrites it by default (unless interactive options or aliases are configured).
+
+### Use Case
+
+* Organize project files.
+* Rename files.
+* Move logs, configuration files, or application artifacts.
+
+---
+
+# Comparison: `cp` vs `mv`
+
+| `cp`                                   | `mv`                                             |
+| -------------------------------------- | ------------------------------------------------ |
+| Creates a copy of a file or directory. | Moves the original file or directory.            |
+| Original remains unchanged.            | Original changes location.                       |
+| Commonly used for backups.             | Commonly used for organizing and renaming files. |
+| Requires `-r` to copy directories.     | Can move files or directories directly.          |
+
+---
+
+# Real DevOps Scenarios
+
+### Backing Up Configuration Files
+
+Before modifying an application configuration file:
+
+```bash
+cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
+```
+
+If the new configuration causes issues, the backup can be restored.
+
+---
+
+### Organizing Application Logs
+
+```bash
+mv app.log archive/
+```
+
+Moves old logs to an archive directory instead of deleting them.
+
+---
+
+### Creating Project Structure
+
+```bash
+mkdir -p DevOps/Linux/Basics
+```
+
+Creates the complete directory hierarchy in a single command.
+
+---
+
+# Interview Questions
+
+### 1. What is the difference between `cp` and `mv`?
+
+`cp` creates a duplicate of a file or directory while keeping the original intact. `mv` changes the location of the original file or directory and is also used to rename files.
+
+---
+
+### 2. Why do we use the `-r` option with `cp`?
+
+The `-r` (recursive) option copies a directory along with all its files and subdirectories.
+
+---
+
+### 3. What is the difference between `rm` and `rmdir`?
+
+* `rm` removes files and directories (with the `-r` option).
+* `rmdir` removes only empty directories.
+
+---
+
+### 4. Why is `cp` commonly used before modifying configuration files?
+
+It creates a backup so the original file can be restored if the new configuration causes issues.
+
+---
+
+### 5. What happens if the destination file already exists when using `mv`?
+
+By default, `mv` overwrites the destination file unless interactive options or aliases are configured.
+
+---
+
+# Commands Practiced Today
+
+```text
+pwd
+cd
+cd /
+cd ~
+cd ..
+ls
+ls -a
+ls -l
+ls -la
+mkdir
+mkdir -p
+touch
+rmdir
+rm
+rm -r
+cp
+cp -r
+mv
+```
+
+---
+
+# Hands-on Activities Completed
+
+* Navigated through the Linux file system.
+* Practiced absolute and relative paths.
+* Listed files and hidden files.
+* Viewed file details using long listing format.
+* Created directories and nested directories.
+* Created empty files.
+* Removed empty and non-empty directories.
+* Copied files and directories.
+* Moved and renamed files.
+* Explored the practical use of Linux file management commands.
+
+---
+
+# Key Takeaways
+
+* `pwd` displays the current working directory.
+* `cd` is used to navigate between directories.
+* `ls` lists directory contents, while `ls -a`, `ls -l`, and `ls -la` provide additional information.
+* `mkdir` creates directories, and `mkdir -p` creates nested directories.
+* `touch` creates empty files or updates timestamps.
+* `rmdir` removes only empty directories.
+* `rm` removes files, and `rm -r` removes directories recursively.
+* `cp` creates copies, making it ideal for backups.
+* `mv` moves or renames files and directories.
+* Understanding these commands is fundamental for Linux administration and DevOps operations.
