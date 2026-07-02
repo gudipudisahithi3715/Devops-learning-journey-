@@ -69,7 +69,7 @@ This simplifies administration and follows the Principle of Least Privilege.
 
 ---
 
-7. Common Linux User Commands
+# 7. common linux user commands 
 
 Linux provides several commands to create, modify, and manage users. These commands are frequently used by Linux Administrators and DevOps Engineers in production environments.
 
@@ -131,7 +131,8 @@ Display Logged-in Users
 The who command displays all users currently logged into the Linux system.
 
 who
-8. Modifying Existing Users
+# 8. Modyfying existing Groups
+
 
 The usermod command is used to modify an existing user account.
 
@@ -153,7 +154,7 @@ Why do we use -aG instead of -G?
 
 ⚠️ Interview Tip: Always use -aG unless you intentionally want to replace all supplementary groups.
 
-9. Deleting Users
+# 9. Deleting Users
 
 The userdel command is used to remove users from the Linux system.
 
@@ -177,7 +178,8 @@ Mail Spool
 
 Most companies first lock the account, retain the data for a specific period, and then permanently delete it using userdel -r.
 
-10. Group Management
+
+# 10. Group Management
 
 Linux groups simplify permission management by allowing administrators to assign permissions to groups instead of individual users.
 
@@ -192,7 +194,7 @@ sudo groupdel groupname
 
 ⚠️ A group cannot be deleted if it is still the Primary Group of any user.
 
-11. Important Linux Files
+# 11. Important Linux Files
 /etc/passwd
 
 Stores basic information about every user account.
@@ -227,7 +229,7 @@ It contains:
 Group Name
 Group ID (GID)
 Members of the Group
-12. Hashing vs Encryption
+# 12. Hashing vs Encryption
 Hashing
 One-way process
 Cannot be reversed
@@ -237,7 +239,7 @@ Encryption
 Two-way process
 Can be decrypted using a key
 Used for protecting sensitive data that needs to be recovered
-13. Real-Time DevOps Scenarios
+# 13. Real-Time DevOps Scenarios
 Scenario 1 – Docker Permission Denied
 
 Instead of giving a developer Root access,
@@ -257,7 +259,7 @@ Retain project files.
 Back up important data.
 Delete the account after the retention period.
 
-14. Interview Questions
+# 14. Interview Questions
 Q1. What are the different types of users in Linux?
 
 Answer:
