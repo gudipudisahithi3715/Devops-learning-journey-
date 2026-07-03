@@ -293,3 +293,350 @@ ps aux is used to monitor all running processes and identify high CPU or memory 
 Answer:
 
 I would use ps -ef while troubleshooting services such as Jenkins, Docker, Nginx, or Java applications to verify whether the process is running and gather details like PID, PPID, and the full command before taking further action.
+
+#  High CPU & Memory Consuming Processes
+### What is %CPU?
+%CPU shows how much CPU a process is currently using.
+A high %CPU value indicates that the process is heavily utilizing the processor.
+
+Example:
+
+### top
+
+Output:
+
+PID   USER      %CPU   %MEM   COMMAND
+2050  jenkins   92.0    35.0   java
+
+Here, the Java process owned by Jenkins is consuming 92% CPU.
+
+# What is %MEM?
+%MEM shows how much RAM a process is using.
+A high %MEM value means the process is consuming a significant amount of memory.
+
+Example:
+
+PID   USER    %CPU   %MEM   COMMAND
+3120  mysql    2.0    80.0   mysqld
+
+Here, MySQL is using 80% of the system's RAM.
+
+### USER Column
+
+Displays the user who started the process.
+
+Examples:
+
+root
+ubuntu
+jenkins
+mysql
+### COMMAND Column
+
+Displays the application or command that started the process.
+
+### Examples:
+
+java
+nginx
+mysqld
+docker
+### Real-Time DevOps Example
+
+A client reports that the application is slow.
+
+Run:
+
+top
+
+Check:
+
+Which process has high %CPU
+Which process has high %MEM
+Identify the application causing the issue
+
+Important: Never kill a process immediately. First verify whether the resource usage is expected and investigate the root cause.
+
+# Process Termination
+### kill
+
+Used to send a signal to a specific process using its PID.
+
+### Syntax:
+
+kill PID
+
+Example:
+
+kill 2050
+# Signals
+
+A signal is a message sent to a process instructing it to perform an action.
+
+### SIGTERM (15)
+
+Gracefully terminates a process.
+
+kill PID
+
+or
+
+kill -15 PID
+
+Allows the application to:
+
+Save data
+Close files
+Release resources
+Exit cleanly
+### SIGKILL (9)
+
+Forcefully terminates a process.
+
+kill -9 PID
+
+The process is stopped immediately without cleanup.
+
+### Best Practice
+
+Always use:
+
+SIGTERM
+      ↓
+If not responding
+      ↓
+SIGKILL
+
+Never use kill -9 as the first option in production.
+
+# kill vs killall vs pkill
+### kill
+
+Stops a specific process using its PID.
+
+kill 2050
+### killall
+
+Stops all processes with the same process name.
+
+killall nginx
+### pkill
+
+Stops processes using a process name or pattern.
+
+pkill java
+
+Search the full command line:
+
+### pkill -f spring
+Comparison
+Command	Purpose	Requires PID
+kill	Stop one specific process	Yes
+killall	Stop all processes with the same name	No
+pkill	Stop processes by name or pattern	No
+# Foreground & Background Processes
+### Foreground Process
+Runs directly in the terminal.
+Occupies the terminal until completion.
+You cannot execute other commands in the same terminal.
+
+### Example:
+
+ping google.com
+### Background Process
+Runs without occupying the terminal.
+Allows you to continue using the terminal.
+
+Start a background process:
+
+./backup.sh &
+
+The & operator runs the process in the background.
+
+### Foreground vs Background
+Foreground	Background
+Occupies terminal	Does not occupy terminal
+User waits	User can continue working
+Suitable for short tasks	Suitable for long-running tasks
+# jobs Command
+
+Displays background jobs started from the current shell.
+
+### jobs
+
+Example:
+
+[1]+ Running    ./backup.sh &
+jobs vs ps
+jobs	ps
+Shows background jobs of the current shell	Shows running processes
+Uses Job Number	Uses PID
+# Ctrl + Z, bg and fg
+### Ctrl + Z
+
+Suspends (pauses) the currently running foreground process.
+
+The process is not terminated.
+
+### bg
+
+Resumes a suspended process in the background.
+
+bg
+### fg
+
+Brings a background process back to the foreground.
+
+fg
+### Flow
+Foreground Process
+        │
+   Ctrl + Z
+        │
+        ▼
+Stopped (Paused)
+        │
+      bg
+        │
+        ▼
+Background Process
+        │
+      fg
+        │
+        ▼
+Foreground Again
+# nohup
+### What is nohup?
+
+nohup stands for No Hang Up.
+
+It keeps a process running even after:
+
+User logout
+SSH session disconnect
+### Syntax
+nohup command &
+
+Example:
+
+nohup ./backup.sh &
+Default Output
+
+By default, output is stored in:
+
+nohup.out
+Redirect Output
+nohup ./backup.sh > backup.log 2>&1 &
+
+### Explanation:
+
+nohup → Keeps the process running after logout.
+> → Redirects standard output.
+backup.log → Stores logs.
+2>&1 → Redirects standard error to the same file.
+& → Runs the process in the background.
+Difference Between & and nohup
+&	nohup
+Runs in the background	Runs in the background and survives logout/SSH disconnect
+May stop when the terminal closes	Continues running after logout
+
+### Note: nohup does not survive a server shutdown. It only keeps the process running after logout or SSH session disconnection.
+
+# Real-Time DevOps Examples
+### Scenario 1: Investigating a Slow Server
+
+Run:
+
+top
+
+Check:
+
+%CPU
+%MEM
+Load Average
+Identify the resource-intensive process before taking any action.
+### Scenario 2: Gracefully Stop a Service
+kill PID
+
+If the process does not respond:
+
+kill -9 PID
+Scenario 3: Long-Running Backup
+
+Instead of:
+
+./backup.sh
+
+Use:
+
+nohup ./backup.sh > backup.log 2>&1 &
+
+The backup continues even after logout.
+
+# Top Interview Questions
+### Q1. What is the difference between %CPU and %MEM?
+
+Answer:
+
+%CPU shows the CPU utilization of a process.
+%MEM shows the RAM utilization of a process.
+### Q2. Why shouldn't you use kill -9 first?
+
+Answer:
+
+kill -9 forcefully terminates a process without allowing it to clean up resources or save its state. Always use SIGTERM first for a graceful shutdown.
+
+### Q3. What is the difference between kill, killall, and pkill?
+
+Answer:
+
+kill terminates a specific process using its PID.
+killall terminates all processes with the same name.
+pkill terminates processes by matching a name or pattern.
+### Q4. What is the difference between a foreground and a background process?
+
+Answer:
+
+A foreground process occupies the terminal until it completes, while a background process runs without occupying the terminal, allowing the user to execute other commands.
+
+### Q5. What is the purpose of the jobs command?
+
+Answer:
+
+The jobs command displays background jobs started from the current shell.
+
+### Q6. What does Ctrl + Z do?
+
+Answer:
+
+It suspends (pauses) the currently running foreground process without terminating it.
+
+### Q7. What is the difference between bg and fg?
+
+Answer:
+
+bg resumes a suspended process in the background.
+fg brings a background process back to the foreground.
+### Q8. What is nohup?
+
+Answer:
+
+nohup allows a process to continue running even after the user logs out or the SSH session disconnects.
+
+### Q9. What is the difference between & and nohup?
+
+Answer:
+
+& runs a process in the background.
+nohup runs a process in the background and ensures it continues running after logout or SSH disconnection.
+### Q10. Explain this command:
+nohup java -jar app.jar > app.log 2>&1 &
+
+Answer:
+
+nohup → Keeps the application running after logout.
+java -jar app.jar → Starts the Java application.
+> → Redirects standard output.
+app.log → Stores application logs.
+2>&1 → Redirects standard error to the same log file.
+& → Runs the application in the background.
