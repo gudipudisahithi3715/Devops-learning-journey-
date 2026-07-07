@@ -1,7 +1,5 @@
 # Day 05 - Linux Networking Fundamentals
 
-Goal: Learn Linux Networking concepts, understand how systems communicate, troubleshoot network issues, and master the networking commands used daily by DevOps Engineers.
-
 #  1. What is Networking?
 ### Theory
 
@@ -1260,4 +1258,5 @@ sudo ufw status
 4. Test the application using:
 
 curl http://server-ip:port
+
 5. Review the application logs.
