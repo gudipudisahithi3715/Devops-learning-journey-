@@ -2892,35 +2892,22 @@ Every Sunday
 
 ---
 
-# ✅ Day 06 Summary
 
-Today I learned:
+# Shell Scripting Interview Questions
 
-- Functions
-- Command-Line Arguments
-- Case Statement
-- Arrays
-- String Operations
-- Script Debugging
-- Error Handling
-- Cron Jobs
-
-These concepts are essential for writing production-ready Shell Scripts used in DevOps automation.
-Shell Scripting Interview Questions
-Basic Level (Very Frequently Asked)
-1. What is Shell Scripting?
+### 1. What is Shell Scripting?
 
 Answer:
 
 A shell script is a text file containing Linux commands that are executed sequentially by the shell. It is used to automate repetitive tasks such as deployments, backups, monitoring, and system administration.
 
-2. What is the difference between Shell and Shell Script?
+### 2. What is the difference between Shell and Shell Script?
 
 Answer:
 
 Shell: A command-line interpreter that accepts and executes commands.
 Shell Script: A file containing multiple shell commands executed as a program.
-3. What are the different types of Shells?
+### 3. What are the different types of Shells?
 
 Answer:
 
@@ -2933,13 +2920,13 @@ Zsh
 
 Bash is the most commonly used shell in Linux.
 
-4. What is the shebang (#!/bin/bash)?
+### 4. What is the shebang (#!/bin/bash)?
 
 Answer:
 
 It tells the operating system which interpreter should execute the script. #!/bin/bash specifies that the script should run using the Bash shell.
 
-5. How do you make a shell script executable?
+### 5. How do you make a shell script executable?
 
 Answer:
 
@@ -2949,66 +2936,66 @@ Run it using:
 
 ./script.sh
 Variables
-6. How do you create a variable?
+### 6. How do you create a variable?
 name="Sahithi"
 
 Access it using:
 
 echo $name
-7. What is the difference between local and environment variables?
+### 7. What is the difference between local and environment variables?
 
 Answer:
 
 Local variables are available only in the current shell.
 Environment variables are available to child processes as well after using export.
-8. How do you export a variable?
+### 8. How do you export a variable?
 export JAVA_HOME=/usr/lib/jvm/java-17
 User Input
-9. How do you read user input?
+### 9. How do you read user input?
 read name
-10. How do you read a password securely?
+### 10. How do you read a password securely?
 read -s password
 Conditions
-11. Difference between if and case?
+### 11. Difference between if and case?
 
 Answer:
 
 if is used for conditions and comparisons.
 case is used to match one value against multiple fixed options.
-12. Difference between = and -eq?
+### 12. Difference between = and -eq?
 
 Answer:
 
 = compares strings.
 -eq compares integers.
-13. What is the difference between -z and -n?
+### 13. What is the difference between -z and -n?
 
 Answer:
 
 -z checks if a string is empty.
 -n checks if a string is not empty.
 Loops
-14. What are the loops in Shell Scripting?
+### 14. What are the loops in Shell Scripting?
 
 Answer:
 
 for
 while
 until
-15. Difference between for and while?
+### 15. Difference between for and while?
 
 Answer:
 
 for is used when the number of iterations is known.
 while is used when the loop continues until a condition becomes false.
 Functions
-16. What is a function?
+### 16. What is a function?
 
 Answer:
 
 A reusable block of code that performs a specific task and helps avoid code duplication.
 
-17. How do you pass arguments to a function?
+### 17. How do you pass arguments to a function?
 function_name arg1 arg2
 
 Access them using:
@@ -3016,67 +3003,67 @@ Access them using:
 $1
 $2
 Command-Line Arguments
-18. What is $0?
+### 18. What is $0?
 
 Answer:
 
 Script name.
 
-19. What is $1?
+### 19. What is $1?
 
 Answer:
 
 First command-line argument.
 
-20. What is $#?
+### 20. What is $#?
 
 Answer:
 
 Total number of command-line arguments.
 
-21. Difference between $@ and $*?
+### 21. Difference between $@ and $*?
 
 Answer:
 
 "$@" treats each argument separately.
 "$*" treats all arguments as a single string when quoted.
-22. What is shift?
+### 22. What is shift?
 
 Answer:
 
 Removes the first positional parameter and shifts the remaining arguments left.
 
 Arrays
-23. What is an array?
+### 23. What is an array?
 
 Answer:
 
 An array stores multiple values under one variable.
 
-24. How do you print all array elements?
+### 24. How do you print all array elements?
 echo "${array[@]}"
-25. How do you find the number of array elements?
+### 25. How do you find the number of array elements?
 echo ${#array[@]}
 String Operations
-26. How do you find the length of a string?
+### 26. How do you find the length of a string?
 ${#string}
-27. How do you convert a string to uppercase?
+### 27. How do you convert a string to uppercase?
 ${string^^}
-28. How do you convert a string to lowercase?
+### 28. How do you convert a string to lowercase?
 ${string,,}
-29. How do you extract a substring?
+### 29. How do you extract a substring?
 ${string:start:length}
 Process & Debugging
-30. How do you debug a script?
+### 30. How do you debug a script?
 bash -x script.sh
 
 or
 
 set -x
-31. How do you stop debugging?
+### 31. How do you stop debugging?
 set +x
 Error Handling
-32. What is an exit status?
+### 32. What is an exit status?
 
 Answer:
 
@@ -3084,51 +3071,51 @@ Every Linux command returns an exit code.
 
 0 → Success
 Non-zero → Failure
-33. What does $? represent?
+### 33. What does $? represent?
 
 Answer:
 
 The exit status of the last executed command.
 
-34. What is set -e?
+### 34. What is set -e?
 
 Answer:
 
 Stops the script immediately if any command fails.
 
-35. Difference between && and ||?
+### 35. Difference between && and ||?
 
 Answer:
 
 && executes the next command only if the previous succeeds.
 || executes the next command only if the previous fails.
-36. What is trap?
+### 36. What is trap?
 
 Answer:
 
 Executes specified commands when a signal or event occurs, often used for cleanup before a script exits.
 
 Cron Jobs
-37. What is Cron?
+### 37. What is Cron?
 
 Answer:
 
 Cron is a Linux scheduler used to execute commands or scripts automatically at specified times.
 
-38. How do you edit cron jobs?
+### 38. How do you edit cron jobs?
 crontab -e
-39. How do you list cron jobs?
+### 39. How do you list cron jobs?
 crontab -l
-40. Write a cron expression to run every 5 minutes.
+### 40. Write a cron expression to run every 5 minutes.
 */5 * * * *
 Scenario-Based Questions (Most Important)
-41. Your deployment script fails after git pull, but still executes docker build. How do you prevent this?
+### 41. Your deployment script fails after git pull, but still executes docker build. How do you prevent this?
 
 Answer:
 
 Use set -e so the script exits immediately when git pull fails.
 
-42. How do you deploy to Dev, QA, and Prod using one script?
+### 42. How do you deploy to Dev, QA, and Prod using one script?
 
 Answer:
 
@@ -3139,13 +3126,13 @@ Example:
 ./deploy.sh dev
 ./deploy.sh qa
 ./deploy.sh prod
-43. How would you restart multiple services using one script?
+### 43. How would you restart multiple services using one script?
 
 Answer:
 
 Store service names in an array and iterate using a for loop.
 
-44. How do you schedule daily backups?
+### 44. How do you schedule daily backups?
 
 Answer:
 
@@ -3154,7 +3141,7 @@ Use Cron.
 Example:
 
 0 2 * * * /home/ubuntu/backup.sh
-45. How do you debug a Jenkins pipeline shell script?
+### 45. How do you debug a Jenkins pipeline shell script?
 
 Answer:
 
@@ -3169,19 +3156,19 @@ bash -x script.sh
 to trace command execution and identify the failing step.
 
 ⭐ HR + Technical Combined Questions
-46. Why is Shell Scripting important for DevOps?
+### 46. Why is Shell Scripting important for DevOps?
 
 Answer:
 
 Shell scripting automates repetitive tasks such as deployments, monitoring, backups, log cleanup, and server management, reducing manual effort and improving consistency.
 
-47. What shell scripts have you written?
+### 47. What shell scripts have you written?
 
 Sample Answer:
 
 I have written shell scripts for automating deployments, restarting services, checking disk usage, monitoring processes, scheduling backups with Cron, and handling Docker and Kubernetes operations. I also use functions, arrays, command-line arguments, and error handling to make scripts reusable and reliable.
 
-48. Which shell scripting topics have you used?
+### 48. Which shell scripting topics have you used?
 
 Sample Answer:
 
