@@ -7141,41 +7141,42 @@ Output:
 Mon Jul 13 10:00:00 Deployment Started
 Mon Jul 13 10:02:00 Docker Build Completed
 Mon Jul 13 10:05:00 Deployment Successful
-### Useful Command Combinations
-Find large files
+
+# Useful Command Combinations
+### Find large files
 find / -type f -size +100M
-Top memory-consuming processes
+### Top memory-consuming processes
 ps -eo pid,comm,%mem --sort=-%mem | head
-Count ERROR messages
+### Count ERROR messages
 grep -c "ERROR" app.log
-Replace all occurrences
+### Replace all occurrences
 sed -i 's/http/https/g' config.txt
-Extract first column
+### Extract first column
 awk '{print $1}'
-Save output while displaying it
+### Save output while displaying it
 kubectl get pods | tee pods.txt
-### Mini DevOps Exercises
-1. Exercise 1
+# Mini DevOps Exercises
+### 1. Exercise 1
 
 Count failed login attempts:
 
 grep -c "Failed" /var/log/auth.log
-2. Exercise 2
+### 2. Exercise 2
 
 Replace image version:
 
 sed -i 's/v1/v2/' deployment.yaml
-3. Exercise 3
+### 3. Exercise 3
 
 Extract all pod names:
 
 kubectl get pods | awk '{print $1}'
-4. Exercise 4
+### 4. Exercise 4
 
 Delete all .tmp files:
 
 find . -name "*.tmp" | xargs rm
-5. Exercise 5
+### 5. Exercise 5
 
 Save deployment logs:
 
